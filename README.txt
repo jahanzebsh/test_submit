@@ -1,44 +1,28 @@
-Do at least ONE of the following tasks: refactor is mandatory. Write tests is optional, will be good bonus to see it. 
-Please do not invest more than 2-4 hours on this.
-Upload your results to a Github repo, for easier sharing and reviewing.
-
-Thank you and good luck!
+Hi , i have completed the tasks as defined below 
 
 
 
 Code to refactor
 =================
-1) app/Http/Controllers/BookingController.php
-2) app/Repository/BookingRepository.php
+1) app/Http/Controllers/BookingController.php has refactored 
+2) app/Repository/BookingRepository.php has refactored top 2 methods 
 
 Code to write tests (optional)
 =====================
-3) App/Helpers/TeHelper.php method willExpireAt
+3) App/Helpers/TeHelper.php method willExpireAt written test in JobHelperTest
 4) App/Repository/UserRepository.php, method createOrUpdate
 
 
 ----------------------------
-
-What I expect in your repo:
-
-X. A readme with:   Your thoughts about the code. What makes it amazing code. Or what makes it ok code. Or what makes it terrible code. How would you have done it. Thoughts on formatting, structure, logic.. The more details that you can provide about the code (what's terrible about it or/and what is good about it) the easier for us to assess your coding style, mentality etc
-
-And 
-
-Y.  Refactor it if you feel it needs refactoring. The more love you put into it. The easier for us to asses your thoughts, code principles etc
+The code appeared to be functional but lacked proper comments and structure, making it harder to understand at first glance. It also had an inconsistency in handling the $noramlJobs variable, which could lead to unexpected behavior.
+To enhance optimization, consider optimizing the use of roles and privileges. Additionally, it's recommended to define distinct methods for each role-related user action.
 
 
-IMPORTANT: Make two commits. First commit with original code. Second with your refactor so we can easily trace changes. 
+Indeed, dividing the code in a Booking repository into multiple files and creating separate helper files for common methods is a good approach to enhance code organization and maintainability. This practice can lead to improved readability and better code structure.
 
+By creating separate files for different functionalities and grouping related methods together, the codebase becomes more modular and easier to manage. For instance, you could have a file for common helper methods, another for booking-related functions, and potentially more for any other logical divisions. This way, the codebase becomes more maintainable, and it's easier to find and reuse common functionalities.
 
-NB: you do not need to set up the code on local and make the web app run. It will not run as its not a complete web app. This is purely to assess you thoughts about code, formatting, logic etc
-
-
-===== So expected output is a GitHub link with either =====
-
-1. Readme described above (point X above) + refactored code 
-OR
-2. Readme described above (point X above) + refactored core + a unit test of the code that we have sent
+Remember to also follow best practices in naming and organizing the files and methods, which can further enhance code clarity and collaboration among developers working on the project.
 
 Thank you!
 

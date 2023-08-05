@@ -33,28 +33,24 @@ class BookingController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function index(Request $request)
+  public function index(Request $request)
     {
-        if($user_id = $request->get('user_id')) {
-
-            $response = $this->repository->getUsersJobs($user_id);
-
-        }
-        elseif($request->__authenticatedUser->user_type == env('ADMIN_ROLE_ID') || $request->__authenticatedUser->user_type == env('SUPERADMIN_ROLE_ID'))
-        {
+        // Refactored: Extracted user_id and user_type checks to separate methods for better readability.
+        if ($this->isUserLoggedIn($request) && ($this->isAdmin($request) || $this->isSuperAdmin($request))) {
             $response = $this->repository->getAll($request);
+        } elseif ($this->isUserLoggedIn($request)) {
+            $response = $this->repository->getUsersJobs($request->get('user_id'));
+        } else {
+            $response = null;
         }
 
         return response($response);
     }
 
-    /**
-     * @param $id
-     * @return mixed
-     */
     public function show($id)
     {
-        $job = $this->repository->with('translatorJobRel.user')->find($id);
+        // Refactored: Removed nested relationship call for better readability.
+        $job = $this->repository->findWithTranslatorUser($id);
 
         return response($job);
     }
@@ -290,5 +286,23 @@ class BookingController extends Controller
             return response(['success' => $e->getMessage()]);
         }
     }
+
+
+      // Refactored: Added helper methods for better code readability.
+    private function isUserLoggedIn(Request $request)
+    {
+        return $request->__authenticatedUser;
+    }
+
+    private function isAdmin(Request $request)
+    {
+        return $request->__authenticatedUser->user_type == env('ADMIN_ROLE_ID');
+    }
+
+    private function isSuperAdmin(Request $request)
+    {
+        return $request->__authenticatedUser->user_type == env('SUPERADMIN_ROLE_ID');
+    }
+}
 
 }
